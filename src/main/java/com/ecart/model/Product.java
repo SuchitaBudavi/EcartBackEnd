@@ -1,16 +1,27 @@
 package com.ecart.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.springframework.stereotype.Component;
+
+@Entity
+@Table (name = "PRODUCT")
+@Component
 public class Product {
-	private String pId;
+	
+	@Id
+	private int pId;
 	private String pBrand;
 	private String pModel;
 	private int pPrice;
 	private int pQty;
 	
-	public String getpId() {
+	public int getpId() {
 		return pId;
 	}
-	public void setpId(String pId) {
+	public void setpId(int pId) {
 		this.pId = pId;
 	}
 	public String getpBrand() {
