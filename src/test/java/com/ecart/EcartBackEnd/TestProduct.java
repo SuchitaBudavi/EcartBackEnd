@@ -6,7 +6,11 @@ import java.util.List;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.ecart.dao.ProductDao;
+import com.ecart.dao.UserDao;
 import com.ecart.model.Product;
+import com.ecart.model.User;
+
+import test.testdependency;
 
 public class TestProduct {
 
@@ -15,7 +19,7 @@ public class TestProduct {
 		context.scan("com.ecart");
 		context.refresh();
 		
-		Product p1 = (Product) context.getBean("product");
+		/*Product p1 = (Product) context.getBean("product");
 		p1.setpId(10);
 		p1.setpBrand("samsung");
 		p1.setpModel("Z3 Tizen");
@@ -28,9 +32,24 @@ public class TestProduct {
 		Iterator<Product> i = pList.iterator();
 		while(i.hasNext()){
 			Product p = (Product) i.next();
-			System.out.println(p.getpId());
+			System.out.println(p.getpId()+"added");
 			System.out.println(p.getpBrand());
 		}
+		*/
+		
+		UserDao userDao = (UserDao) context.getBean("userDao");
+		User user = (User) context.getBean("user");
+		
+		/*user.setfName("suchita");
+		user.setlName("budavi");
+		user.setEmail("suchi@gmail.com");
+		user.setPassword("suchi");
+		
+		userDao.saveOrUpdate(user);
+		*/
+		/*if( userDao.validateUser("suchigmail", "suchi"))
+			System.out.println(user.getlName());*/
+		System.out.println(userDao.getUser(1).getlName());
 	}
 
 }

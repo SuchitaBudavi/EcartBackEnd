@@ -17,7 +17,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.ecart.dao.ProductDao;
 import com.ecart.dao.ProductDaoImpl;
+import com.ecart.dao.UserDao;
+import com.ecart.dao.UserDaoImpl;
 import com.ecart.model.Product;
+import com.ecart.model.User;
 
 
 @Configuration
@@ -33,7 +36,7 @@ public class ApplicationContextConfig {
     	dataSource.setUrl("jdbc:h2:tcp://localhost/~/test");
     	dataSource.setUsername("sa");
     	dataSource.setPassword("");
-    	
+    	System.out.println("dataSource");
     	return dataSource;
     }
     
@@ -42,6 +45,7 @@ public class ApplicationContextConfig {
     	Properties properties = new Properties();
     	properties.put("hibernate.show_sql", "true");
     	properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+    	properties. put("hibernate.hbm2ddl.auto","update");
     	return properties;
     }
     
@@ -51,6 +55,8 @@ public class ApplicationContextConfig {
     	LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
     	sessionBuilder.addProperties(getHibernateProperties());
     	sessionBuilder.addAnnotatedClasses(Product.class);
+    	sessionBuilder.addAnnotatedClasses(User.class);
+    	System.out.println("inside sessionFactory");
     	return sessionBuilder.buildSessionFactory();
     }
     
@@ -65,10 +71,17 @@ public class ApplicationContextConfig {
 	}
     
     @Autowired
-    @Bean(name = "productDao")
-    public ProductDao geCategorDao(SessionFactory sessionFactory) {
+    @Bean
+    public ProductDao getProductDao(SessionFactory sessionFactory) {
+    	System.out.println("Applicationconfig productDao bean");
     	return new ProductDaoImpl(sessionFactory);
     }
 
-
+    
+    @Autowired
+    @Bean
+    public UserDao getUserDao(SessionFactory sessionFactory) {
+    	System.out.println("Applicationconfig productDao bean");
+    	return new UserDaoImpl(sessionFactory);
+    }
 }
