@@ -4,7 +4,7 @@ import com.ecart.model.User;
 
 public interface UserDao {
 	
-	public boolean validateUser(String email, String password);
+	public Integer validateUser(String email, String password);
 	
 	public User getUser(int uId);
 	

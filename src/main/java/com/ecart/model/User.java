@@ -29,7 +29,9 @@ public class User {
 	private int contactNum;
 	@Column(length=15, nullable=false)
 	private String password;
-
+	@Column
+	private int isAdmin;
+	
 	/*@Embedded
 	@AttributeOverrides({
 		@AttributeOverride(name="street", column=@Column(name="shipping_street")),
@@ -90,6 +92,12 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public int getIsAdmin() {
+		return isAdmin;
+	}
+	public void setIsAdmin(int isAdmin) {
+		this.isAdmin = isAdmin;
 	}	
 	
 }

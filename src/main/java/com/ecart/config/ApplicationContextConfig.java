@@ -14,12 +14,17 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-
+import com.ecart.dao.CategoryDao;
+import com.ecart.dao.CategoryDaoImpl;
 import com.ecart.dao.ProductDao;
 import com.ecart.dao.ProductDaoImpl;
+import com.ecart.dao.SupplierDao;
+import com.ecart.dao.SupplierDaoImpl;
 import com.ecart.dao.UserDao;
 import com.ecart.dao.UserDaoImpl;
+import com.ecart.model.Category;
 import com.ecart.model.Product;
+import com.ecart.model.Supplier;
 import com.ecart.model.User;
 
 
@@ -56,6 +61,8 @@ public class ApplicationContextConfig {
     	sessionBuilder.addProperties(getHibernateProperties());
     	sessionBuilder.addAnnotatedClasses(Product.class);
     	sessionBuilder.addAnnotatedClasses(User.class);
+    	sessionBuilder.addAnnotatedClasses(Supplier.class);
+    	sessionBuilder.addAnnotatedClasses(Category.class);
     	System.out.println("inside sessionFactory");
     	return sessionBuilder.buildSessionFactory();
     }
@@ -81,7 +88,23 @@ public class ApplicationContextConfig {
     @Autowired
     @Bean
     public UserDao getUserDao(SessionFactory sessionFactory) {
-    	System.out.println("Applicationconfig productDao bean");
+    	System.out.println("Applicationconfig userDao");
     	return new UserDaoImpl(sessionFactory);
+    }
+    
+    @Autowired
+    @Bean
+    public SupplierDao supplierDao(SessionFactory sessionFactory) {
+    	System.out.println("Applicationconfig supplierDao");
+    	return new SupplierDaoImpl(sessionFactory);
+    			
+    }
+    
+    @Autowired
+    @Bean
+    public CategoryDao categoryDao(SessionFactory sessionFactory) {
+    	System.out.println("Applicationconfig categoryDao");
+    	return new CategoryDaoImpl(sessionFactory);
+    			
     }
 }

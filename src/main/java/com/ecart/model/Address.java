@@ -6,9 +6,13 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Address {
 	
+	@Column(length=20)
 	private String street;
+	@Column(length=20)
 	private String city;
+	@Column(length=20)
 	private String state;
+	@Column(nullable=false,length=20)
 	private int pincode;
 	
 	public String getCity() {

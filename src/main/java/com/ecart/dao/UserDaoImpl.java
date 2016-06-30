@@ -4,8 +4,13 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.LogicalExpression;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -22,15 +27,34 @@ public class UserDaoImpl implements UserDao {
 	}
 	
 	@Transactional
-	public boolean validateUser(String email, String password) {
-		String hql = "from User where email=" + email +" and password= "+ password;
+	public Integer validateUser(String email, String password) {
+	/*	String hql = "from User where email=" +"'" + email + "'" +" and password= "+ "'" +password + "'";
+		System.out.println(hql);
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		List<User> userList = query.list();
 		
 		if (userList != null && !userList.isEmpty()) {
 			return true;
 		}
-		return false;
+		return false;*/
+		
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
+		criteria.setProjection(Projections.property("isAdmin"));
+	
+		Criterion emailRes = Restrictions.eq("email",email);
+		Criterion passwordRes = Restrictions.eq("password",password);
+		
+		LogicalExpression andExp = Restrictions.and(emailRes, passwordRes);
+		
+		criteria.add(andExp);
+		
+		List userList = criteria.list();
+		if (userList != null && !userList.isEmpty()) {
+			System.out.println(userList.get(0));
+			return (Integer) userList.get(0);
+		}
+		
+		return -1;
 	}
 
 	@Transactional

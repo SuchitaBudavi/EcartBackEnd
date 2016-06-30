@@ -3,8 +3,15 @@ import java.util.List;
 
 import com.ecart.model.Product;
 
+
 public interface ProductDao {
 
-	//display list of products
 	public List<Product> getProductList();
+	
+	public Product getProduct(int pId);
+	
+	public void saveOrUpdate(Product product);
+	
+	public void deleteProduct(int pId);
+	
 }
