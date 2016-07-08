@@ -1,15 +1,12 @@
 package com.ecart.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.ManyToAny;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -20,14 +17,13 @@ public class Product {
 	@Id @GeneratedValue
 	private int pId;
 	@ManyToOne @JoinColumn(name="cId")
-	private Category cId;
+	private Category category_FK;
 	private String pBrand;
 	private String pModel;
-	private String pDesc;
 	private int pPrice;
 	private int pQty;
 	@ManyToOne @JoinColumn(name="sId")
-	private Supplier sId;
+	private Supplier supplier_FK;
 	
 	
 	public int getpId() {
@@ -61,23 +57,18 @@ public class Product {
 		this.pQty = pQty;
 	}
 	
-	public Category getcId() {
-		return cId;
+	
+	public Category getCategory_FK() {
+		return category_FK;
 	}
-	public void setcId(Category cId) {
-		this.cId = cId;
+	public void setCategory_FK(Category category_FK) {
+		this.category_FK = category_FK;
 	}
-	public Supplier getsId() {
-		return sId;
+	public Supplier getSupplier_FK() {
+		return supplier_FK;
 	}
-	public void setsId(Supplier sId) {
-		this.sId = sId;
-	}
-	public String getpDesc() {
-		return pDesc;
-	}
-	public void setpDesc(String pDesc) {
-		this.pDesc = pDesc;
+	public void setSupplier_FK(Supplier supplier_FK) {
+		this.supplier_FK = supplier_FK;
 	}
 	
 }

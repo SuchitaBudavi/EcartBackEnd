@@ -8,7 +8,6 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
@@ -16,6 +15,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.ecart.dao.CategoryDao;
 import com.ecart.dao.CategoryDaoImpl;
+import com.ecart.dao.MobileCoverFeatureDao;
+import com.ecart.dao.MobileCoverFeatureDaoImpl;
+import com.ecart.dao.MobileFeatureDao;
+import com.ecart.dao.MobileFeatureDaoImpl;
+import com.ecart.dao.MultiSupplierDao;
+import com.ecart.dao.MultiSupplierDaoImpl;
 import com.ecart.dao.ProductDao;
 import com.ecart.dao.ProductDaoImpl;
 import com.ecart.dao.SupplierDao;
@@ -23,6 +28,9 @@ import com.ecart.dao.SupplierDaoImpl;
 import com.ecart.dao.UserDao;
 import com.ecart.dao.UserDaoImpl;
 import com.ecart.model.Category;
+import com.ecart.model.MobileCoverFeature;
+import com.ecart.model.MobileFeature;
+import com.ecart.model.MultiSupplier;
 import com.ecart.model.Product;
 import com.ecart.model.Supplier;
 import com.ecart.model.User;
@@ -61,8 +69,11 @@ public class ApplicationContextConfig {
     	sessionBuilder.addProperties(getHibernateProperties());
     	sessionBuilder.addAnnotatedClasses(Product.class);
     	sessionBuilder.addAnnotatedClasses(User.class);
-    	sessionBuilder.addAnnotatedClasses(Supplier.class);
     	sessionBuilder.addAnnotatedClasses(Category.class);
+    	sessionBuilder.addAnnotatedClasses(Supplier.class);
+    	sessionBuilder.addAnnotatedClasses(MultiSupplier.class);
+    	sessionBuilder.addAnnotatedClasses(MobileFeature.class);
+    	sessionBuilder.addAnnotatedClasses(MobileCoverFeature.class);
     	System.out.println("inside sessionFactory");
     	return sessionBuilder.buildSessionFactory();
     }
@@ -96,15 +107,34 @@ public class ApplicationContextConfig {
     @Bean
     public SupplierDao supplierDao(SessionFactory sessionFactory) {
     	System.out.println("Applicationconfig supplierDao");
-    	return new SupplierDaoImpl(sessionFactory);
-    			
+    	return new SupplierDaoImpl(sessionFactory);			
     }
     
     @Autowired
     @Bean
     public CategoryDao categoryDao(SessionFactory sessionFactory) {
     	System.out.println("Applicationconfig categoryDao");
-    	return new CategoryDaoImpl(sessionFactory);
-    			
+    	return new CategoryDaoImpl(sessionFactory);		
+    }
+    
+    @Autowired
+    @Bean
+    public MultiSupplierDao multiSupplierDao(SessionFactory sessionFactory) {
+    	System.out.println("Applicationconfig supplierDao");
+    	return new MultiSupplierDaoImpl(sessionFactory);			
+    }
+    
+    @Autowired
+    @Bean
+    public MobileFeatureDao mobileFeatureDao(SessionFactory sessionFactory) {
+    	System.out.println("Applicationconfig mobileFeatureDao");
+    	return new MobileFeatureDaoImpl(sessionFactory);			
+    }
+    
+    @Autowired
+    @Bean
+    public MobileCoverFeatureDao mobileCoverFeatureDao(SessionFactory sessionFactory) {
+    	System.out.println("Applicationconfig mobileCoverFeatureDao");
+    	return new MobileCoverFeatureDaoImpl(sessionFactory);			
     }
 }

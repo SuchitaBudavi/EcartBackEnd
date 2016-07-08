@@ -50,5 +50,4 @@ public class CategoryDaoImpl implements CategoryDao {
 		category = getCategory(cId);
 		sessionFactory.getCurrentSession().delete(category);
 	}
-
 }

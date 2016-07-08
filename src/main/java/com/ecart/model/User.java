@@ -1,12 +1,16 @@
 package com.ecart.model;
 
+import java.util.List;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -31,6 +35,9 @@ public class User {
 	private String password;
 	@Column
 	private int isAdmin;
+	private boolean enabled;
+	@ElementCollection
+	private List<Address> addressList;
 	
 	/*@Embedded
 	@AttributeOverrides({
@@ -44,12 +51,30 @@ public class User {
 	@Embedded //this annotation is not compulsory as @Embeddable is already defined at class level
 	private Address billingAddr;*/
 	
+	
 	public String getuId() {
 		return uId;
 	}
+	
 	public void setuId(String uId) {
 		this.uId = uId;
 	}
+	
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public List<Address> getAddressList() {
+		return addressList;
+	}
+	public void setAddressList(List<Address> addressList) {
+		this.addressList = addressList;
+	}
+	
 	public String getfName() {
 		return fName;
 	}

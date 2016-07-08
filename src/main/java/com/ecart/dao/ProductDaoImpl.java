@@ -55,4 +55,17 @@ public class ProductDaoImpl implements ProductDao{
 		sessionFactory.getCurrentSession().delete(product);
 	}
 
+	@Override @Transactional
+	public List<Product> getProductList(int cId) {
+		String hql = "from Product where cId=" + cId;
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		List<Product> productList =  query.list();
+		if(productList != null && !productList.isEmpty()){
+			return productList;
+		}
+		return null;
+	}
+	
+	
+
 }

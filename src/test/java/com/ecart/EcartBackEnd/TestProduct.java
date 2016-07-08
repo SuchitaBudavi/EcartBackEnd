@@ -31,20 +31,36 @@ public class TestProduct {
 		Supplier s = (Supplier) context.getBean("supplier");
 		SupplierDao sDao = (SupplierDao) context.getBean("supplierDao");
 		
-		p.setpBrand("samsung");
-		p.setpModel("6S");
-		p.setpDesc("color mobile");
-		p.setpPrice(50000);
-		p.setpQty(8);
+		
+		p.setpBrand("Daily Objects");
+		p.setpModel("samsung transparant");
+		p.setpPrice(400);
+		p.setpQty(50);
 		
 		c = cDao.getCategory(2);
 		s = sDao.getSuuplier(3);
 		
-		p.setsId(s);
+		p.setCategory_FK(c);
 		//c.getProduct().add(p);
-		p.setcId(c);
+		p.setSupplier_FK(s);
 		
 		pDao.saveOrUpdate(p);
+		
+		/*p.setpBrand("Samsung");
+		p.setpModel("Tizen Z3");
+		p.setpPrice(7000);
+		p.setpQty(100);
+		pDao.saveOrUpdate(p);
+		*/
+		
+	/*	
+		List<Product> sList = pDao.getProductList(2);
+		Iterator<Product> i = sList.iterator();
+		while(i.hasNext()){
+			Product p1 = (Product) i.next();
+			System.out.println(p1.getpId()+" "+p1.getpBrand());
+		}*/
+		
 		
 		/*Category c = (Category) context.getBean("category");
 		CategoryDao cDao = (CategoryDao) context.getBean("categoryDao");

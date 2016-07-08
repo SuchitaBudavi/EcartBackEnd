@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Supplier {
 
-	@Id 
+	@Id
 	@Column(nullable = false, length=5)
 	private int sId;
 	

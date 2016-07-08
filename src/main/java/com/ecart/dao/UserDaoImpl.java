@@ -86,4 +86,14 @@ public class UserDaoImpl implements UserDao {
 		sessionFactory.getCurrentSession().saveOrUpdate(user);
 		
 	}
+
+	//enable = true = user is enabled
+	//enable = false = user is disabled
+	@Override @Transactional
+	public void enableUser(int uId, boolean enable) {
+		Query query = sessionFactory.getCurrentSession().createQuery("update User set enabled='"+enable+"' where uId="+uId);	
+		query.executeUpdate();
+	}
+
+	
 }

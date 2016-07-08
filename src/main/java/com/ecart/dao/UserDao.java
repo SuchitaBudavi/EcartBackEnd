@@ -12,4 +12,5 @@ public interface UserDao {
 	
 	public void saveOrUpdate(User user);
 	
+	public void enableUser(int uId, boolean enable);
 }
