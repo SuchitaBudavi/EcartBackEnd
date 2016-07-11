@@ -31,7 +31,7 @@ public class User {
 	private String email;
 	@Column(length=12)
 	private int contactNum;
-	@Column(length=15, nullable=false)
+	@Column(length=50, nullable=false)
 	private String password;
 	@Column
 	private int isAdmin;

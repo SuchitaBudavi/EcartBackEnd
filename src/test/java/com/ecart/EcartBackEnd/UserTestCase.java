@@ -21,15 +21,10 @@ public class UserTestCase {
 		uDao = (UserDao) context.getBean("userDao");
 	}
 
-	@Test
-	public void validateUser() {
-		assertEquals("User test: validate Admin true", new Integer(1), uDao.validateUser("suchigmail", "suchi"));
-		assertEquals("User test: validate User true", new Integer(1), uDao.validateUser("sweetygmail", "sweety"));
-	}
 	
 	@Test
 	public void getUserTest(){
-		User u = uDao.getUser(5);
+		User u = uDao.getUser(1);
 		if(u == null)
 			u = new User();
 		//test of first name

@@ -1,6 +1,9 @@
 package com.ecart.dao;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
@@ -64,6 +67,20 @@ public class ProductDaoImpl implements ProductDao{
 			return productList;
 		}
 		return null;
+	}
+
+	@Override @Transactional
+	public Map<Integer, String> getProductNameList(int cId) {
+		Map<Integer, String> nameListMap = new HashMap<Integer, String>();
+		String hql = "select pId,pBrand from Product where cId=" + cId;
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		List nameList = query.list();
+		Iterator i = nameList.iterator();
+		while (i.hasNext()) {
+			Object[] result = (Object[]) i.next();
+			nameListMap.put((Integer)result[0], (String)result[1]);
+		}
+		return nameListMap;
 	}
 	
 	

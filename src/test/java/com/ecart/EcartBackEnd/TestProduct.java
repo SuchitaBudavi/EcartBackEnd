@@ -2,6 +2,8 @@ package com.ecart.EcartBackEnd;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -32,7 +34,17 @@ public class TestProduct {
 		SupplierDao sDao = (SupplierDao) context.getBean("supplierDao");
 		
 		
-		p.setpBrand("Daily Objects");
+	/*	c.setcName("add newname");
+		cDao.saveOrUpdate(c);*/
+		
+		Map<Integer, String> nameListMapp = pDao.getProductNameList(1);
+		Iterator i = nameListMapp.entrySet().iterator();
+		while(i.hasNext()){
+			Map.Entry<Integer, String> pair = (Entry<Integer, String>) i.next();
+			System.out.println(pair.getKey()+pair.getValue());
+		}
+		
+		/*p.setpBrand("Daily Objects");
 		p.setpModel("samsung transparant");
 		p.setpPrice(400);
 		p.setpQty(50);
@@ -44,7 +56,7 @@ public class TestProduct {
 		//c.getProduct().add(p);
 		p.setSupplier_FK(s);
 		
-		pDao.saveOrUpdate(p);
+		pDao.saveOrUpdate(p);*/
 		
 		/*p.setpBrand("Samsung");
 		p.setpModel("Tizen Z3");
