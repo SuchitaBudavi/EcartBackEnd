@@ -68,9 +68,6 @@ public class CartTest {
 		System.out.println("before save");
 		uDao.saveOrUpdate(u);
 */
-		GuestCartDetails guestCart = (GuestCartDetails) context.getBean("guestCartDetails");
-		guestCart.setQty(100);
-		GuestCartDetails guestCart1 = (GuestCartDetails) context.getBean("guestCartDetails");
-		System.out.println(guestCart1.getQty());
+		cdDao.delete("3", 11, 1);
 	}
 }

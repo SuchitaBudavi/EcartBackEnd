@@ -20,12 +20,12 @@ public class CartDetailsDaoImpl implements CartDetailsDao {
 	}
 	
 	@Override @Transactional
-	public CartDetails getCart(int uId) {
+	public List<CartDetails> getCart(String uId) {
 		String hql = "from CartDetails where uId="+uId;
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		List<CartDetails> cartList = query.list();
 		if(cartList!=null && !cartList.isEmpty())
-			return cartList.get(0);
+			return cartList;
 		return null;
 	}
  
@@ -33,9 +33,25 @@ public class CartDetailsDaoImpl implements CartDetailsDao {
 	public void saveOrUpdate(CartDetails cart) {
 		sessionFactory.getCurrentSession().saveOrUpdate(cart);
 	}
+	
+	
+
+	@Override @Transactional
+	public void save(CartDetails cart) {
+		sessionFactory.getCurrentSession().save(cart);
+	}
 
 	@Override @Transactional
 	public void delete(CartDetails cart) {
 		sessionFactory.getCurrentSession().delete(cart);
 	}
+
+	@Override @Transactional
+	public void delete(String uId, int pId, int cId) {
+		String hql = "delete from CartDetails where pId="+pId+" and cId="+cId+" and uId='"+uId+"'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		int result = query.executeUpdate();
+	}
+	
+	
 }
