@@ -15,7 +15,6 @@ import com.ecart.model.Category;
 public class CategoryDaoImpl implements CategoryDao {
 
 	
-	@Autowired
 	private SessionFactory sessionFactory;
 	
 	public CategoryDaoImpl(SessionFactory sessionFactory){

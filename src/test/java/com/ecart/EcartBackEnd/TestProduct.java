@@ -33,16 +33,21 @@ public class TestProduct {
 		Supplier s = (Supplier) context.getBean("supplier");
 		SupplierDao sDao = (SupplierDao) context.getBean("supplierDao");
 		
+		List<String> brandList = pDao.getBrands(1);
+		Iterator i = brandList.iterator();
+		while(i.hasNext()){
+			System.out.println(i.next());
+		}
 		
 	/*	c.setcName("add newname");
 		cDao.saveOrUpdate(c);*/
 		
-		Map<Integer, String> nameListMapp = pDao.getProductNameList(1);
+		/*Map<Integer, String> nameListMapp = pDao.getProductNameList(1);
 		Iterator i = nameListMapp.entrySet().iterator();
 		while(i.hasNext()){
 			Map.Entry<Integer, String> pair = (Entry<Integer, String>) i.next();
 			System.out.println(pair.getKey()+pair.getValue());
-		}
+		}*/
 		
 		/*p.setpBrand("Daily Objects");
 		p.setpModel("samsung transparant");

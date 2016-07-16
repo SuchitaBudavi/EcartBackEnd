@@ -27,6 +27,7 @@ import com.ecart.dao.SupplierDao;
 import com.ecart.dao.SupplierDaoImpl;
 import com.ecart.dao.UserDao;
 import com.ecart.dao.UserDaoImpl;
+import com.ecart.model.CartDetails;
 import com.ecart.model.Category;
 import com.ecart.model.MobileCoverFeature;
 import com.ecart.model.MobileFeature;
@@ -39,8 +40,6 @@ import com.ecart.model.User;
 @Configuration
 @EnableTransactionManagement
 public class ApplicationContextConfig {
-	
-
     
     @Bean(name = "dataSource")
     public DataSource getDataSource() {
@@ -74,6 +73,8 @@ public class ApplicationContextConfig {
     	sessionBuilder.addAnnotatedClasses(MultiSupplier.class);
     	sessionBuilder.addAnnotatedClasses(MobileFeature.class);
     	sessionBuilder.addAnnotatedClasses(MobileCoverFeature.class);
+    	//sessionBuilder.addAnnotatedClasses(Cart.class);
+    	sessionBuilder.addAnnotatedClasses(CartDetails.class);
     	System.out.println("inside sessionFactory");
     	return sessionBuilder.buildSessionFactory();
     }

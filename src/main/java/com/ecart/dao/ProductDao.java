@@ -13,6 +13,9 @@ public interface ProductDao {
 	
 	public Map<Integer, String> getProductNameList(int cId);
 	
+	//get the list of distinct brands
+	public List getBrands(int cId);
+	
 	public Product getProduct(int pId);
 	
 	public void saveOrUpdate(Product product);

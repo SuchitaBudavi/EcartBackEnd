@@ -8,9 +8,13 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -39,6 +43,9 @@ public class User {
 	@ElementCollection
 	private List<Address> addressList;
 	
+	@OneToMany(fetch=FetchType.EAGER)
+	@JoinTable(name="user_cart", joinColumns=@JoinColumn(name="uId"), inverseJoinColumns=@JoinColumn(name="cartDetailId"))
+	private List<CartDetails> uCart;
 	/*@Embedded
 	@AttributeOverrides({
 		@AttributeOverride(name="street", column=@Column(name="shipping_street")),
@@ -59,7 +66,15 @@ public class User {
 	public void setuId(String uId) {
 		this.uId = uId;
 	}
-	
+
+	public List<CartDetails> getuCart() {
+		return uCart;
+	}
+
+	public void setuCart(List<CartDetails> uCart) {
+		this.uCart = uCart;
+	}
+
 	public boolean isEnabled() {
 		return enabled;
 	}

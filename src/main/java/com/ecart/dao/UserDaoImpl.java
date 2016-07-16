@@ -71,7 +71,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Transactional
 	public User getUser(String email) {
-		String hql = "from User where email=" + email;
+		String hql = "from User where email='" + email+"'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		List<User> userList = query.list();
 		

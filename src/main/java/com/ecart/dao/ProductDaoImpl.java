@@ -82,7 +82,14 @@ public class ProductDaoImpl implements ProductDao{
 		}
 		return nameListMap;
 	}
-	
-	
 
+	//get the list of distinct brands
+	@Override @Transactional
+	public List getBrands(int cId) {	
+		String hql = "select distinct pBrand from Product where cId="+cId;
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		List brandList = query.list();
+		return brandList;
+	}
+	
 }
