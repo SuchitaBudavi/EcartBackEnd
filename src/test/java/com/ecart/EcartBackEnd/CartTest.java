@@ -68,6 +68,8 @@ public class CartTest {
 		System.out.println("before save");
 		uDao.saveOrUpdate(u);
 */
-		cdDao.delete("3", 11, 1);
+		//cdDao.delete("3", 13, 1, 3);
+	
+		cdDao.update("3", 11, 1, 3, 3);
 	}
 }

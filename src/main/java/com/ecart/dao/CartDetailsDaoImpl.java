@@ -28,27 +28,22 @@ public class CartDetailsDaoImpl implements CartDetailsDao {
 			return cartList;
 		return null;
 	}
- 
+
 	@Override @Transactional
-	public void saveOrUpdate(CartDetails cart) {
-		sessionFactory.getCurrentSession().saveOrUpdate(cart);
+	public void update(String uId, int pId, int cId, int sId, int qty) {
+		String hql = "update CartDetails set qty="+qty+" where pId="+pId+" and cId="+cId+" and sId="+sId+" and uId='"+uId+"'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.executeUpdate();
+	}
+
+	@Override @Transactional
+	public void save(CartDetails cart){
+		sessionFactory.getCurrentSession().save(cart); 
 	}
 	
-	
-
 	@Override @Transactional
-	public void save(CartDetails cart) {
-		sessionFactory.getCurrentSession().save(cart);
-	}
-
-	@Override @Transactional
-	public void delete(CartDetails cart) {
-		sessionFactory.getCurrentSession().delete(cart);
-	}
-
-	@Override @Transactional
-	public void delete(String uId, int pId, int cId) {
-		String hql = "delete from CartDetails where pId="+pId+" and cId="+cId+" and uId='"+uId+"'";
+	public void delete(String uId, int pId, int cId, int sId) {
+		String hql = "delete from CartDetails where pId="+pId+" and cId="+cId+" and sId="+sId+" and uId='"+uId+"'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		int result = query.executeUpdate();
 	}
