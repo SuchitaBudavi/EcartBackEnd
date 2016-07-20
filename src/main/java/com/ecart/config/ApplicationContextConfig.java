@@ -21,6 +21,8 @@ import com.ecart.dao.MobileFeatureDao;
 import com.ecart.dao.MobileFeatureDaoImpl;
 import com.ecart.dao.MultiSupplierDao;
 import com.ecart.dao.MultiSupplierDaoImpl;
+import com.ecart.dao.UserOrderDao;
+import com.ecart.dao.UserOrderDaoImpl;
 import com.ecart.dao.ProductDao;
 import com.ecart.dao.ProductDaoImpl;
 import com.ecart.dao.SupplierDao;
@@ -32,6 +34,7 @@ import com.ecart.model.Category;
 import com.ecart.model.MobileCoverFeature;
 import com.ecart.model.MobileFeature;
 import com.ecart.model.MultiSupplier;
+import com.ecart.model.UserOrder;
 import com.ecart.model.Product;
 import com.ecart.model.Supplier;
 import com.ecart.model.User;
@@ -75,6 +78,7 @@ public class ApplicationContextConfig {
     	sessionBuilder.addAnnotatedClasses(MobileCoverFeature.class);
     	//sessionBuilder.addAnnotatedClasses(Cart.class);
     	sessionBuilder.addAnnotatedClasses(CartDetails.class);
+    	sessionBuilder.addAnnotatedClasses(UserOrder.class);
     	System.out.println("inside sessionFactory");
     	return sessionBuilder.buildSessionFactory();
     }
@@ -137,5 +141,12 @@ public class ApplicationContextConfig {
     public MobileCoverFeatureDao mobileCoverFeatureDao(SessionFactory sessionFactory) {
     	System.out.println("Applicationconfig mobileCoverFeatureDao");
     	return new MobileCoverFeatureDaoImpl(sessionFactory);			
+    }
+    
+    @Autowired
+    @Bean
+    public UserOrderDao userOrderDao(SessionFactory sessionFactory) {
+    	System.out.println("Applicationconfig mobileCoverFeatureDao");
+    	return new UserOrderDaoImpl(sessionFactory);			
     }
 }

@@ -3,7 +3,10 @@ package com.ecart.model;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+import org.springframework.stereotype.Component;
+
 @Embeddable
+@Component
 public class Address {
 	
 	@Column(length=20)
