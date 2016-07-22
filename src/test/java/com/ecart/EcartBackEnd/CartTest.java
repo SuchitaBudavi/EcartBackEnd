@@ -16,6 +16,7 @@ import com.ecart.model.GuestCartDetails;
 import com.ecart.model.Product;
 import com.ecart.model.Supplier;
 import com.ecart.model.User;
+import org.apache.commons.codec.digest.DigestUtils;
 
 public class CartTest {
 
@@ -33,6 +34,10 @@ public class CartTest {
 		
 		UserDao uDao = (UserDao) context.getBean("userDao");
 		User u = (User)context.getBean("user");
+		
+		
+		System.out.println("Sh1"+DigestUtils.sha1Hex("aff"));
+		
 		
 		/*CartDetails cartDetails = new CartDetails();
 		u = uDao.getUser(3);
