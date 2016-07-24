@@ -1,5 +1,7 @@
 package com.ecart.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -7,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Embeddable
 @Component
-public class Address {
+public class Address implements Serializable{
 	
 	@Column(length=20)
 	private String street;

@@ -1,5 +1,6 @@
 package com.ecart.model;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -28,7 +29,7 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table (name = "USER_DETAILS")
 @Component
-public class User {
+public class User implements Serializable{
 	
 	@Id
 	@GeneratedValue
