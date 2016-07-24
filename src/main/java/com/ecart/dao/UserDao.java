@@ -10,7 +10,9 @@ public interface UserDao {
 	
 	public User getUser(String email);
 	
-	public void saveOrUpdate(User user);
+	public void save(User user);
+	
+	public void update(User user);
 	
 	public void enableUser(int uId, boolean enable);
 }

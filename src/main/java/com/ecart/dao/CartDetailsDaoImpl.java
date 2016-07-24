@@ -21,7 +21,7 @@ public class CartDetailsDaoImpl implements CartDetailsDao {
 	
 	@Override @Transactional
 	public List<CartDetails> getCart(String uId) {
-		String hql = "from CartDetails where uId="+uId;
+		String hql = "from CartDetails where uId='"+uId+"'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		List<CartDetails> cartList = query.list();
 		if(cartList!=null && !cartList.isEmpty())

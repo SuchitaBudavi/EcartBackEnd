@@ -82,9 +82,16 @@ public class UserDaoImpl implements UserDao {
 	}
 	
 	@Transactional
-	public void saveOrUpdate(User user) {
-		sessionFactory.getCurrentSession().saveOrUpdate(user);
+	public void save(User user) {
+		sessionFactory.getCurrentSession().save(user);
 		
+	}
+
+	
+	
+	@Override @Transactional
+	public void update(User user) {
+		sessionFactory.getCurrentSession().update(user);
 	}
 
 	//enable = true = user is enabled

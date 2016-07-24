@@ -1,7 +1,6 @@
 package com.ecart.model;
 
 import java.util.List;
-
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -16,8 +15,15 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
+import com.ecart.model.Address;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
+
 
 @Entity
 @Table (name = "USER_DETAILS")
@@ -32,6 +38,8 @@ public class User {
 	@Column(length=20, nullable=false)
 	private String lName;
 	@Column(length=50, nullable=false)
+	@NotEmpty(message="Email is manditory")
+	@Email(message="Please user correct email id")
 	private String email;
 	@Column(length=12)
 	private int contactNum;

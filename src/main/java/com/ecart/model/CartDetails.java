@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.springframework.stereotype.Component;
+import com.ecart.model.*;
 
 @Entity
 @Component

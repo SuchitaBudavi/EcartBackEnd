@@ -18,8 +18,8 @@ public class TestUser {
 		
 		User u = (User) context.getBean("user");
 		UserDao uDao = (UserDao) context.getBean("userDao");
-		uDao.enableUser(1, false);
-/*		u.setfName("suchita");
+		//uDao.enableUser(1, false);
+		u.setfName("suchita");
 		u.setlName("b");
 		u.setEmail("suchigmail");
 		u.setPassword("suchi");
@@ -42,7 +42,7 @@ public class TestUser {
 		addrList.add(a2);
 		
 		u.setAddressList(addrList);
-		uDao.saveOrUpdate(u);*/
+		uDao.save(u);
 		
 		
 	}
