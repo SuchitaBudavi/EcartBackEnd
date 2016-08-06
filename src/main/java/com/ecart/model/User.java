@@ -76,14 +76,6 @@ public class User implements Serializable{
 		this.uId = uId;
 	}
 
-	/*public List<CartDetails> getuCart() {
-		return uCart;
-	}
-
-	public void setuCart(List<CartDetails> uCart) {
-		this.uCart = uCart;
-	}*/
-
 	public boolean isEnabled() {
 		return enabled;
 	}
@@ -111,19 +103,7 @@ public class User implements Serializable{
 	public void setlName(String lName) {
 		this.lName = lName;
 	}
-	/*public Address getBillingAddr() {
-		return billingAddr;
-	}
-	public void setBillingAddr(Address billingAddr) {
-		this.billingAddr = billingAddr;
-	}
-	public Address getShippingAddr() {
-		return shippingAddr;
-	}
-	public void setShippingAddr(Address shippingAddr) {
-		this.shippingAddr = shippingAddr;
-	}
-*/
+	
 	public String getEmail() {
 		return email;
 	}
